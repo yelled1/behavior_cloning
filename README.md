@@ -18,7 +18,7 @@ The trained model managed to go through the train track w/o being off course.
 The data used were 300MB or so provided by udacity & combined with 100MB of my own twice around the track.
 No particular part of track were emphasized (which was recommended by some other students in the FAQ).
 This & other techniques like change in lighting, sheering, rotating, etc... suggested might improve the poor showing on the validation track, where it just hits a portion of dark wall & do NOT go anywhere after first 20 sec.
-### This will be worked on for future reference. ###
+* This will be worked on for future reference.
 
 The ML model followed nvidia End to End Learning for Self-Driving Cars https://arxiv.org/pdf/1604.07316v1.pdf
 """
@@ -26,12 +26,12 @@ Train the weights of our network to min( MSE ) the steering command output by th
 the command of either the human driver, or the adjusted steering command for off-center and rotated images 
 9 layers, including a normalization layer, 5 convolutional layers & 3 fully connected layers.
 
-1. L image normalization hardcoded
-2. ~4L 2x2 stride & 5x5 kernel CNN
-5. ,6L non-strided CNN 3x3 Kernel
-7. ~9L fully conn = output inverse turning radius
-But an additional fully connected layer was used to improve results. [1164, 100, 40, 10]
+* 1.L image normalization hardcoded
+* 2. ~4L 2x2 stride & 5x5 kernel CNN
+* 5. ,6L non-strided CNN 3x3 Kernel
+* 7. ~9L fully conn = output inverse turning radius. [1164, 100, 40, 10]
 * And, optimized with Adam
 * It had an additioan Layer of Dropout, but it had to be dropped
 
 I have used 7 epochs with image sized reduced to 64x64 using a rather powerful nVidia GT 1060 graphics card.
+Each iteration took about 5 minutes to train
