@@ -1,0 +1,52 @@
+800
+windowed
+Simple
+
+(Py3) :/AutoAuto/Prj3$ ./DefaultLinuxdesktopUniversal.x86_64 
+Set current directory to /media/DFS/Prj/UDacity/AutoAuto/Prj3
+Found path: /media/DFS/Prj/UDacity/AutoAuto/Prj3/DefaultLinuxdesktopUniversal.x86_64
+Mono path[0] = '/media/DFS/Prj/UDacity/AutoAuto/Prj3/DefaultLinuxdesktopUniversal_Data/Managed'
+Mono path[1] = '/media/DFS/Prj/UDacity/AutoAuto/Prj3/DefaultLinuxdesktopUniversal_Data/Mono'
+Mono config path = '/media/DFS/Prj/UDacity/AutoAuto/Prj3/DefaultLinuxdesktopUniversal_Data/Mono/etc'
+displaymanager : xrandr version warning. 1.5
+client has 4 screens
+displaymanager screen (0)(HDMI-0): 1920 x 1080
+Using libudev for joystick management
+
+
+Importing game controller configs
+/dev/input/js0: driver version: 2.1.0 (20100)
+/dev/input/js0: Too many axes; using axes 0 - 27 and ignoring axes 28 - 36
+/dev/input/js0: Too many buttons; using buttons 0 - 19 and ignoring buttons 20 - 74
+/dev/input/js0: fd 4, buttons 20, axes 28, name Microsoft Wired Keyboard 600
+/dev/input/js0: axis  0: raw -32767, mapped 0.000000
+/dev/input/js0: axis  1: raw -32767, mapped 0.000000
+/dev/input/js0: axis  2: raw -32767, mapped 0.000000
+/dev/input/js0: axis  3: raw -32767, mapped 0.000000
+/dev/input/js0: axis  4: raw -32767, mapped 0.000000
+/dev/input/js0: axis  5: raw -32767, mapped 0.000000
+/dev/input/js0: axis  6: raw -32767, mapped 0.000000
+/dev/input/js0: axis  7: raw -32767, mapped 0.000000
+/dev/input/js0: axis  8: raw -32767, mapped 0.000000
+/dev/input/js0: axis  9: raw -32767, mapped 0.000000
+/dev/input/js0: axis 10: raw      0, mapped 0.000000
+/dev/input/js0: axis 11: raw      0, mapped 0.000000
+/dev/input/js0: axis 12: raw -32767, mapped 0.000000
+/dev/input/js0: axis 13: raw -32767, mapped 0.000000
+/dev/input/js0: axis 14: raw -32767, mapped 0.000000
+/dev/input/js0: axis 15: raw -32767, mapped 0.000000
+/dev/input/js0: axis 16: raw -32767, mapped 0.000000
+/dev/input/js0: axis 17: raw -32767, mapped 0.000000
+/dev/input/js0: axis 18: raw -32767, mapped 0.000000
+/dev/input/js0: axis 19: raw -32767, mapped 0.000000
+/dev/input/js0: axis 20: raw -32767, mapped 0.000000
+/dev/input/js0: axis 21: raw -32767, mapped 0.000000
+/dev/input/js0: axis 22: raw -32767, mapped 0.000000
+/dev/input/js0: axis 23: raw -32767, mapped 0.000000
+/dev/input/js0: axis 24: raw -32767, mapped 0.000000
+/dev/input/js0: axis 25: raw -32767, mapped 0.000000
+/dev/input/js0: axis 26: raw -32767, mapped 0.000000
+/dev/input/js0: axis 27: raw -32767, mapped 0.000000
+/dev/input/js0: axis 28: raw -32767, mapped 0.000000
+Assigning joystick 1
+
