@@ -26,8 +26,8 @@ Train the weights of our network to min( MSE ) the steering command output by th
 the command of either the human driver, or the adjusted steering command for off-center and rotated images 
 9 layers, including a normalization layer, 5 convolutional layers & 3 fully connected layers.
 
-* 1.L image normalization hardcoded
-* 2. ~4L 2x2 stride & 5x5 kernel CNN
+* 1.L image normalization hardcoded using x/127.5 -1 (64x64x3)
+* 2. ~4L 2x2 stride & 5x5 kernel CNN - starts out with Filters [24, 36, 48, 64, 64]
 * 5. ,6L non-strided CNN 3x3 Kernel
 * 7. ~9L fully conn = output inverse turning radius. [1164, 100, 40, 10]
 * And, optimized with Adam
@@ -35,3 +35,5 @@ the command of either the human driver, or the adjusted steering command for off
 
 I have used 7 epochs with image sized reduced to 64x64 using a rather powerful nVidia GT 1060 graphics card.
 Each iteration took about 5 minutes to train
+** other Notables **
+The data collected using keyboard is erratic as mentioned by others, but data provided is too smooth. Combining both had definite desired effect. Code itself is pretty much self documenting. Not PEP8, but similar to technique I use at work.
