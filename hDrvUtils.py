@@ -7,6 +7,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.misc
 
+tDir = 'combDir/'
+tFnm = 'driving_tst.csv'
+mFnm = 'driving_mod.csv'
+vFnm = 'driving_val.csv'
+
+
+def shuffle(df, n=1, axis=0):  #this does both row, col
+    df = df.copy()
+    for _ in range(n): df.apply(np.random.shuffle, axis=axis)
+    return df
+
+def spltLog(dDir=tDir, valPerc=.2, tstPerc=.1):
+    dl = pd.read_csv(dDir+'driving_log.csv')
+    nl = dl.reindex(np.random.permutation(dl.index)) #shuffles row only
+    vx = +int(len(nl)*valPerc)
+    tx = -int(len(nl)*tstPerc)
+    nl[:vx].to_csv(dDir+vFnm, sep='\t')
+    print('Creating', dDir+vFnm, nl[:vx].shape)
+    nl[tx:].to_csv(dDir+tFnm, sep='\t')
+    nl[vx:tx].to_csv(dDir+mFnm, sep='\t')
+    return vx, tx
+
 def incrementFiles(FName):
     """ incrementFiles whenver it find existing """
     if os.path.isfile(FName):
@@ -22,11 +44,11 @@ def saveModel(sDir, model, modelFName='model.json', WgtFName='model.h5'):
         json.dump(jsonStr, fp)
     model.save_weights(sDir+WgtFName)
 
-def getImageInBatch(batch_size, dDir, STEERING_COEF=0.229):
+def getImageInBatch(batch_size, dDir=tDir, STEERING_COEF=0.229, logFnm=mFnm):
     """
     returns: An list of selected (image files names, steering angles)
     """
-    data    = pd.read_csv(dDir+'driving_log.csv') # Need to deal with No Headers
+    data    = pd.read_csv(dDir+logFnm, sep='\t').ix[:, 1:] # Need to deal with No Headers
     rnd_ixs = np.random.randint(0, len(data), batch_size)
 
     lcrDict = { -1: 'left', 0: 'center', 1: 'right'}
@@ -39,7 +61,8 @@ def getImageInBatch(batch_size, dDir, STEERING_COEF=0.229):
     return imgs_angles_list
 
 def reSize(image, nDim=(64,64)): return scipy.misc.imresize(image, nDim)
-def generateNewBatch(dDir, batch_size=64):
+
+def generateNewBatch(dDir, batch_size=64, lFnm=tFnm):
     """
     Generator of next training batch
     :param batch_size: # of training images in a single batch
@@ -48,7 +71,7 @@ def generateNewBatch(dDir, batch_size=64):
     while True:
         X_batch = []
         y_batch = []
-        images = getImageInBatch(batch_size, dDir=dDir)
+        images = getImageInBatch(batch_size, dDir=dDir, logFnm=lFnm)
         for img_file, steer_angle in images:
             raw_image = plt.imread(dDir + img_file)
             raw_angle = steer_angle
@@ -58,4 +81,6 @@ def generateNewBatch(dDir, batch_size=64):
         yield np.array(X_batch), np.array(y_batch)
 
 if __name__ == '__main__':
-    x = generateNewBatch('./data/', batch_size=64)
+    pass
+    #x = generateNewBatch('./data/', batch_size=64)
+    #spltLog(dDir=tDir, valPerc=.2, tstPerc=.1)

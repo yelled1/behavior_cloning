@@ -14,7 +14,7 @@ learnRate = 1e-3
 Relu  = 'relu'
 SoftM = 'softmax'
 
-targetDir = './combDir/'
+targetDir = hU.tDir
 batchSize = 64*12
 
 """
@@ -29,7 +29,7 @@ the command of either the human driver, or the adjusted steering command for off
 # Not sure which parts of network is feature extractor & controller
 """
 model = Sequential()
-model.add(Lambda(lambda x: x/127.5-1, input_shape=(64,64,3)))   #1 image normalization hardcoded
+model.add(Lambda(lambda x: x/127.5-1, input_shape=(64,64,3)))  #1 image normalization hardcoded
 nbFilter, nbRow, nbCol = 24,5,5                                #2
 model.add(Convolution2D(nbFilter, nbRow, nbCol, border_mode='same', subsample=(2,2), activation=Relu))
 model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1)))
@@ -46,24 +46,28 @@ nbFilter = 64                                                  #6
 model.add(Convolution2D(nbFilter, nbRow, nbCol, border_mode='same', subsample=(2,2), activation=Relu))
 model.add(MaxPooling2D(pool_size=(2,2), strides=(1,1)))
 model.add( Flatten() )
-#model.add(Dropout(.5))
+model.add(Dropout(.5))
 #model.add(Activation(Relu)) # Recommended by Udacity
 for denShape in [1164, 100, 40, 10]:
     model.add(Dense(denShape, activation=Relu))  #7~
-model.add( Dense(1) ) # Final???
+model.add( Dense(1) ) # Final
 model.summary()
 model.compile(optimizer=Adam(learnRate), loss='mse')
 
-train_gen   = hU.generateNewBatch(targetDir,batchSize)
-validat_gen = hU.generateNewBatch(targetDir,batchSize)
+test_gen    = hU.generateNewBatch(targetDir, batchSize, hU.tFnm)
+mTrain_gen  = hU.generateNewBatch(targetDir, batchSize, hU.mFnm)
+validat_gen = hU.generateNewBatch(targetDir, batchSize, hU.vFnm)
 
 print('\nStarting At: ', targetDir)
 
-history = model.fit_generator(train_gen,
+history = model.fit_generator(mTrain_gen,
                               samples_per_epoch=nb_samples, 
                               nb_epoch=nb_epochs,
-                              validation_data=validat_gen,
-                              nb_val_samples=nb_validtns,
-                              verbose=1)
+                                  validation_data=validat_gen,
+                                  nb_val_samples=nb_validtns,
+                                  verbose=1)
 
+#predict = model.validation_data(
 hU.saveModel(targetDir, model)
+evaluate = model.evaluate_generator(test_gen, 1008)
+print("model.evaluate", evaluate)

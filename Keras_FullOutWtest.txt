@@ -1,0 +1,99 @@
+Python 3.5.2 |Anaconda 4.3.0 (64-bit)| (default, Jul  2 2016, 17:53:06) 
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.3.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]: 
+In [2]: 
+In [3]: 
+In [4]: I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.so.5 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.so.8.0 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcuda.so.1 locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcurand.so.8.0 locally
+Using TensorFlow backend.
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+lambda_1 (Lambda)                (None, 64, 64, 3)     0           lambda_input_1[0][0]             
+____________________________________________________________________________________________________
+convolution2d_1 (Convolution2D)  (None, 32, 32, 24)    1824        lambda_1[0][0]                   
+____________________________________________________________________________________________________
+maxpooling2d_1 (MaxPooling2D)    (None, 31, 31, 24)    0           convolution2d_1[0][0]            
+____________________________________________________________________________________________________
+convolution2d_2 (Convolution2D)  (None, 16, 16, 36)    21636       maxpooling2d_1[0][0]             
+____________________________________________________________________________________________________
+maxpooling2d_2 (MaxPooling2D)    (None, 15, 15, 36)    0           convolution2d_2[0][0]            
+____________________________________________________________________________________________________
+convolution2d_3 (Convolution2D)  (None, 8, 8, 48)      43248       maxpooling2d_2[0][0]             
+____________________________________________________________________________________________________
+maxpooling2d_3 (MaxPooling2D)    (None, 7, 7, 48)      0           convolution2d_3[0][0]            
+____________________________________________________________________________________________________
+convolution2d_4 (Convolution2D)  (None, 4, 4, 64)      27712       maxpooling2d_3[0][0]             
+____________________________________________________________________________________________________
+maxpooling2d_4 (MaxPooling2D)    (None, 3, 3, 64)      0           convolution2d_4[0][0]            
+____________________________________________________________________________________________________
+convolution2d_5 (Convolution2D)  (None, 2, 2, 64)      36928       maxpooling2d_4[0][0]             
+____________________________________________________________________________________________________
+maxpooling2d_5 (MaxPooling2D)    (None, 1, 1, 64)      0           convolution2d_5[0][0]            
+____________________________________________________________________________________________________
+flatten_1 (Flatten)              (None, 64)            0           maxpooling2d_5[0][0]             
+____________________________________________________________________________________________________
+dropout_1 (Dropout)              (None, 64)            0           flatten_1[0][0]                  
+____________________________________________________________________________________________________
+dense_1 (Dense)                  (None, 1164)          75660       dropout_1[0][0]                  
+____________________________________________________________________________________________________
+dense_2 (Dense)                  (None, 100)           116500      dense_1[0][0]                    
+____________________________________________________________________________________________________
+dense_3 (Dense)                  (None, 40)            4040        dense_2[0][0]                    
+____________________________________________________________________________________________________
+dense_4 (Dense)                  (None, 10)            410         dense_3[0][0]                    
+____________________________________________________________________________________________________
+dense_5 (Dense)                  (None, 1)             11          dense_4[0][0]                    
+====================================================================================================
+Total params: 327,969
+Trainable params: 327,969
+Non-trainable params: 0
+____________________________________________________________________________________________________
+
+Starting At:  combDir/
+Epoch 1/7
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE3 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:910] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:885] Found device 0 with properties: 
+name: GeForce GTX 1060 6GB
+major: 6 minor: 1 memoryClockRate (GHz) 1.7715
+pciBusID 0000:01:00.0
+Total memory: 5.93GiB
+Free memory: 5.73GiB
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:906] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:916] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:975] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1060 6GB, pci bus id: 0000:01:00.0)
+19968/20083 [============================>.] - ETA: 0s - loss: 0.0515/opt/miniconda3/envs/Py3/lib/python3.5/site-packages/keras/engine/training.py:1573: UserWarning: Epoch comprised more than `samples_per_epoch` samples, which might affect learning results. Set `samples_per_epoch` correctly to avoid this warning.
+  warnings.warn('Epoch comprised more than '
+20736/20083 [==============================] - 258s - loss: 0.0508 - val_loss: 0.0401
+Epoch 2/7
+20736/20083 [==============================] - 81s - loss: 0.0330 - val_loss: 0.0329
+Epoch 3/7
+20736/20083 [==============================] - 50s - loss: 0.0280 - val_loss: 0.0272
+Epoch 4/7
+20736/20083 [==============================] - 41s - loss: 0.0245 - val_loss: 0.0308
+Epoch 5/7
+20736/20083 [==============================] - 39s - loss: 0.0213 - val_loss: 0.0305
+Epoch 6/7
+20736/20083 [==============================] - 38s - loss: 0.0198 - val_loss: 0.0303
+Epoch 7/7
+20736/20083 [==============================] - 37s - loss: 0.0176 - val_loss: 0.0276
+---------------------------------------------------------------------------
+In [6]: evaluate = model.evaluate_generator(test_gen, 1008)
+In [8]: print("model.evaluate", evaluate)
+model.evaluate 0.028620492667
