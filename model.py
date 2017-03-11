@@ -7,7 +7,7 @@ import hDrvUtils as hU
 
 tf.python.control_flow_ops = tf
 
-nb_epochs  = 7
+nb_epochs  = 17
 nb_samples = 20083
 nb_validtns = 6400
 learnRate = 1e-3

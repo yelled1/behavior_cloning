@@ -70,7 +70,9 @@ if __name__ == '__main__':
     with open(args.model, 'r') as jfile:
         #model = model_from_json(jfile.read())
         #model = model_from_json(json.loads(jfile.read()))
-        model = model_from_json(json.load(jfile))
+        #model = model_from_json(json.load(jfile))
+        model = model_from_json(json.load(jfile,encoding="ISO-8859-1"))
+        #model = model_from_json(json.load(unicodedata(opener.open(jfile),
 
     model.compile("adam", "mse")
     weights_file = args.model.replace('json', 'h5')
